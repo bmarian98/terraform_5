@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'marian14/terraform-git:1.0'
+            image 'hashicorp/terraform:latest'
         }
     }
     environment {
