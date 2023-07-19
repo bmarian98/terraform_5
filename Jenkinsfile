@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
 
-            image 'hashicorp/terraform:latest'            
+            image 'marian14/alpine-terraform:1.1'            
 
         }
     }
