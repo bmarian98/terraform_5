@@ -3,7 +3,7 @@ def gitRepoUrl = 'https://github.com/bmarian98/terraform_5.git'
 pipeline {
     agent {
         docker {
-            image 'hashicorp/terraform:latest'
+            image 'marian14/terraform-git:1.0'
         }
     }
     environment {
