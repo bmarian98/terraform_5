@@ -46,7 +46,7 @@ pipeline {
         stage('Network') {
             steps {
                 dir('live/dev/network') {
-                    script{
+                    script {
                         docker.image('hashicorp/terraform:latest').inside{
                             sh 'terraform init'
                         }
@@ -54,7 +54,7 @@ pipeline {
                 }
 
                 dir('live/dev/network') {
-                    script{
+                    script {
                         docker.image('hashicorp/terraform:latest').inside{
                             sh 'terraform plan'
                         }
@@ -62,7 +62,7 @@ pipeline {
                 }
 
                 dir('live/dev/network') {
-                    script{
+                    script {
                         docker.image('hashicorp/terraform:latest').inside{
                             echo "Terraform action: ${action}"
                             sh "terraform ${action} -auto-approve"
@@ -74,7 +74,7 @@ pipeline {
         stage('Services') {
             steps {
                 dir('live/dev/services') {
-                    script{
+                    script {
                         docker.image('hashicorp/terraform:latest').inside{
                             sh 'terraform init'
                         }
@@ -82,7 +82,7 @@ pipeline {
                 }
 
                 dir('live/dev/services') {
-                    script{
+                    script {
                         docker.image('hashicorp/terraform:latest').inside{
                             sh 'terraform plan'
                         }
@@ -90,7 +90,7 @@ pipeline {
                 }
 
                 dir('live/dev/services') {
-                    scrippt{
+                    script {
                         docker.image('hashicorp/terraform:latest').inside{
                             echo "Terraform action: ${action}"
                             sh "terraform ${action} -auto-approve"
