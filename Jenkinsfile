@@ -1,8 +1,6 @@
 pipeline {
     agent {
-        docker {
-            image 'hashicorp/terraform:latest'
-        }
+        label 'docker' 
     }
     environment {
         AWS_ACCESS_KEY_ID = credentials('mb-aws-access-key-id')
@@ -26,48 +24,66 @@ pipeline {
         // stage('Data storage') {
         //     steps {
         //         dir('live/dev/data-storage') {
-        //             sh 'terraform init'
+        //             docker.image('hashicorp/terraform:latest').inside{
+        //                 sh 'terraform init'
+        //             }
         //         }
 
         //         dir('live/dev/data-storage') {
-        //             sh 'terraform plan'
+        //             docker.image('hashicorp/terraform:latest').inside{
+        //                 sh 'terraform plan'
+        //             }
         //         }
 
         //         dir('live/dev/data-storage') {
-        //             echo "Terraform action: ${action}"
-        //             sh "terraform ${action} -auto-approve"
+        //             docker.image('hashicorp/terraform:latest').inside{
+        //                 echo "Terraform action: ${action}"
+        //                 sh "terraform ${action} -auto-approve"
+        //             }
         //         }
         //     }
         // }
         stage('Network') {
             steps {
                 dir('live/dev/network') {
-                    sh 'terraform init'
+                    docker.image('hashicorp/terraform:latest').inside{
+                        sh 'terraform init'
+                    }
                 }
 
                 dir('live/dev/network') {
-                    sh 'terraform plan'
+                    docker.image('hashicorp/terraform:latest').inside{
+                        sh 'terraform plan'
+                    }
                 }
 
                 dir('live/dev/network') {
-                    echo "Terraform action: ${action}"
-                    sh "terraform ${action} -auto-approve"
+                    docker.image('hashicorp/terraform:latest').inside{
+                        echo "Terraform action: ${action}"
+                        sh "terraform ${action} -auto-approve"
+                    }
                 }
             }
         }
         stage('Services') {
             steps {
                 dir('live/dev/services') {
-                    sh 'terraform init'
+                    docker.image('hashicorp/terraform:latest').inside{
+                        sh 'terraform init'
+                    }
                 }
 
                 dir('live/dev/services') {
-                    sh 'terraform plan'
+                    docker.image('hashicorp/terraform:latest').inside{
+                        sh 'terraform plan'
+                    }
                 }
 
                 dir('live/dev/services') {
-                    echo "Terraform action: ${action}"
-                    sh "terraform ${action} -auto-approve"
+                    docker.image('hashicorp/terraform:latest').inside{
+                        echo "Terraform action: ${action}"
+                        sh "terraform ${action} -auto-approve"
+                    }
                 }
             }
         }
