@@ -16,33 +16,33 @@ pipeline {
     }
     
     stages {
-        stage('Data storage') {
-            steps {
-                git branch: 'main', url: gitRepoUrl
-            }
-            stage('Terraform Init - Data storage') {
-                steps {
-                    dir('live/dev/data-storage') {
-                        sh 'terraform init'
-                    }
-                }
-            }
-            stage('Terraform Plan - Data storage') {
-                steps {
-                    dir('live/dev/data-storage') {
-                        sh 'terraform plan'
-                    }
-                }
-            }
-            stage('Terraform Action - Data storage') {
-                steps {
-                    dir('live/dev/data-storage') {
-                        echo "Terraform action: ${action}"
-                        sh "terraform ${action} -auto-approve"
-                    }
-                }
-            }
-        }
+        // stage('Data storage') {
+        //     steps {
+        //         git branch: 'main', url: gitRepoUrl
+        //     }
+        //     stage('Terraform Init - Data storage') {
+        //         steps {
+        //             dir('live/dev/data-storage') {
+        //                 sh 'terraform init'
+        //             }
+        //         }
+        //     }
+        //     stage('Terraform Plan - Data storage') {
+        //         steps {
+        //             dir('live/dev/data-storage') {
+        //                 sh 'terraform plan'
+        //             }
+        //         }
+        //     }
+        //     stage('Terraform Action - Data storage') {
+        //         steps {
+        //             dir('live/dev/data-storage') {
+        //                 echo "Terraform action: ${action}"
+        //                 sh "terraform ${action} -auto-approve"
+        //             }
+        //         }
+        //     }
+        // }
         stage('Network') {
             steps {
                 git branch: 'main', url: gitRepoUrl
