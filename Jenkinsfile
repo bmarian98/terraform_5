@@ -1,5 +1,3 @@
-def gitRepoUrl = 'https://github.com/bmarian98/terraform_5.git'
-
 pipeline {
     agent {
         docker {
@@ -17,12 +15,16 @@ pipeline {
     }
 
     stages {
+
+        stage('Clone repository') {
+            steps {
+                script{
+                    checkout scm
+                }
+            }
+        }
         // stage('Data storage') {
         //     steps {
-        //         script{
-        //             git branch: 'main', url: gitRepoUrl
-        //         }
-
         //         dir('live/dev/data-storage') {
         //             sh 'terraform init'
         //         }
@@ -39,10 +41,6 @@ pipeline {
         // }
         stage('Network') {
             steps {
-                script {
-                    git branch: 'main', url: gitRepoUrl
-                }
-
                 dir('live/dev/network') {
                     sh 'terraform init'
                 }
@@ -59,10 +57,6 @@ pipeline {
         }
         stage('Services') {
             steps {
-                script {
-                    git branch: 'main', url: gitRepoUrl
-                }
-
                 dir('live/dev/services') {
                     sh 'terraform init'
                 }
