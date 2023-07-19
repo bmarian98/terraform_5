@@ -16,64 +16,65 @@ pipeline {
         TF_VAR_s3_app = 's3://bm-s3-bucket/web-app/'
     }
 
-    // stages {
-    //     stage('Data storage') {
-    //         steps {
-    //             script{
-    //                 git branch: 'main', url: gitRepoUrl
-    //             }
+    stages {
+        // stage('Data storage') {
+        //     steps {
+        //         script{
+        //             git branch: 'main', url: gitRepoUrl
+        //         }
 
-    //             dir('live/dev/data-storage') {
-    //                 sh 'terraform init'
-    //             }
+        //         dir('live/dev/data-storage') {
+        //             sh 'terraform init'
+        //         }
 
-    //             dir('live/dev/data-storage') {
-    //                 sh 'terraform plan'
-    //             }
+        //         dir('live/dev/data-storage') {
+        //             sh 'terraform plan'
+        //         }
 
-    //             dir('live/dev/data-storage') {
-    //                 echo "Terraform action: ${action}"
-    //                 sh "terraform ${action} -auto-approve"
-    //             }
-    //         }
-    //     }
-    stage('Network') {
-        steps {
-            script {
-                git branch: 'main', url: gitRepoUrl
-            }
+        //         dir('live/dev/data-storage') {
+        //             echo "Terraform action: ${action}"
+        //             sh "terraform ${action} -auto-approve"
+        //         }
+        //     }
+        // }
+        stage('Network') {
+            steps {
+                script {
+                    git branch: 'main', url: gitRepoUrl
+                }
 
-            dir('live/dev/network') {
-                sh 'terraform init'
-            }
+                dir('live/dev/network') {
+                    sh 'terraform init'
+                }
 
-            dir('live/dev/network') {
-                sh 'terraform plan'
-            }
+                dir('live/dev/network') {
+                    sh 'terraform plan'
+                }
 
-            dir('live/dev/network') {
-                echo "Terraform action: ${action}"
-                sh "terraform ${action} -auto-approve"
+                dir('live/dev/network') {
+                    echo "Terraform action: ${action}"
+                    sh "terraform ${action} -auto-approve"
+                }
             }
         }
-    }
-    stage('Services') {
-        steps {
-            script {
-                git branch: 'main', url: gitRepoUrl
-            }
+        stage('Services') {
+            steps {
+                script {
+                    git branch: 'main', url: gitRepoUrl
+                }
 
-            dir('live/dev/services') {
-                sh 'terraform init'
-            }
+                dir('live/dev/services') {
+                    sh 'terraform init'
+                }
 
-            dir('live/dev/services') {
-                sh 'terraform plan'
-            }
+                dir('live/dev/services') {
+                    sh 'terraform plan'
+                }
 
-            dir('live/dev/services') {
-                echo "Terraform action: ${action}"
-                sh "terraform ${action} -auto-approve"
+                dir('live/dev/services') {
+                    echo "Terraform action: ${action}"
+                    sh "terraform ${action} -auto-approve"
+                }
             }
         }
     }
