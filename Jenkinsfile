@@ -1,6 +1,10 @@
 pipeline {
     agent {
-        label 'docker' 
+        docker {
+
+            image 'hashicorp/terraform:latest'            
+
+        }
     }
     environment {
         AWS_ACCESS_KEY_ID = credentials('mb-aws-access-key-id')
@@ -47,26 +51,26 @@ pipeline {
             steps {
                 dir('live/dev/network') {
                     script {
-                        docker.image('hashicorp/terraform:latest').inside{
+                        //docker.image('hashicorp/terraform:latest').inside{
                             sh 'terraform init'
-                        }
+                        //}
                     }
                 }
 
                 dir('live/dev/network') {
                     script {
-                        docker.image('hashicorp/terraform:latest').inside{
+                        //docker.image('hashicorp/terraform:latest').inside{
                             sh 'terraform plan'
-                        }
+                        //}
                     }
                 }
 
                 dir('live/dev/network') {
                     script {
-                        docker.image('hashicorp/terraform:latest').inside{
+                        //docker.image('hashicorp/terraform:latest').inside{
                             echo "Terraform action: ${action}"
                             sh "terraform ${action} -auto-approve"
-                        }
+                        //}
                     }
                 }
             }
@@ -75,26 +79,26 @@ pipeline {
             steps {
                 dir('live/dev/services') {
                     script {
-                        docker.image('hashicorp/terraform:latest').inside{
+                        //docker.image('hashicorp/terraform:latest').inside{
                             sh 'terraform init'
-                        }
+                        //}
                     }
                 }
 
                 dir('live/dev/services') {
                     script {
-                        docker.image('hashicorp/terraform:latest').inside{
+                        //docker.image('hashicorp/terraform:latest').inside{
                             sh 'terraform plan'
-                        }
+                        //}
                     }
                 }
 
                 dir('live/dev/services') {
                     script {
-                        docker.image('hashicorp/terraform:latest').inside{
+                        //docker.image('hashicorp/terraform:latest').inside{
                             echo "Terraform action: ${action}"
                             sh "terraform ${action} -auto-approve"
-                        }
+                        //}
                     }
                 }
             }
