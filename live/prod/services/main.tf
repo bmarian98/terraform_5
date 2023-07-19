@@ -1,4 +1,4 @@
-/* 
+
 data "aws_iam_instance_profile" "instance_profile" {
   name = "MBSSMEC2InstanceProfile"
 }
@@ -73,20 +73,20 @@ module "alb" {
   alb_security_groups     = [module.vpc.public_security_group]
 }
 
-module "s3" {
+/* module "s3" {
   source        = "../../../modules/s3_bucket"
   environment   = "PROD"
-  s3_name       = "mb-s3-bucket"
+  s3_name       = "mb-s3-bucket-prod"
   s3_bucket_tag = "mb-s3"
 
-} 
-*/
+}  */
 
-module "s3" {
+
+/* module "s3" {
   source        = "../../../modules/s3_static_website"
   environment   = "PROD"
   s3_name       = "mb-s3-bucket-98"
   s3_bucket_tag = "mb-s3-98"
     index_file_path = file("../../static_website/index.html")
     error_file_path = file("../../static_website/error.html")
-}
+} */

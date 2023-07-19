@@ -15,6 +15,7 @@ pipeline {
     }
 
     stages {
+
         stage('Clone repository') {
             steps {
                 script{
@@ -22,39 +23,37 @@ pipeline {
                 }
             }
         }
-
         // stage('Data storage') {
         //     steps {
-        //         dir('live/dev/data-storage') {
+        //         dir('live/prod/data-storage') {
         //                 sh 'terraform init'
         //         }
 
-        //         dir('live/dev/data-storage') {
+        //         dir('live/prod/data-storage') {
         //                 sh 'terraform plan'
         //         }
 
-        //         dir('live/dev/data-storage') {
+        //         dir('live/prod/data-storage') {
         //                 echo "Terraform action: ${action}"
         //                 sh "terraform ${action} -auto-approve"
         //         }
         //     }
         // }
-
         stage('Network') {
             steps {
-                dir('live/dev/network') {
+                dir('live/prod/network') {
                     script {
                             sh 'terraform init'
                     }
                 }
 
-                dir('live/dev/network') {
+                dir('live/prod/network') {
                     script {
                             sh 'terraform plan'
                     }
                 }
 
-                dir('live/dev/network') {
+                dir('live/prod/network') {
                     script {
                             echo "Terraform action: ${action}"
                             sh "terraform ${action} -auto-approve"
@@ -62,22 +61,21 @@ pipeline {
                 }
             }
         }
-        
         stage('Services') {
             steps {
-                dir('live/dev/services') {
+                dir('live/prod/services') {
                     script {
                             sh 'terraform init'
                     }
                 }
 
-                dir('live/dev/services') {
+                dir('live/prod/services') {
                     script {
                             sh 'terraform plan'
                     }
                 }
 
-                dir('live/dev/services') {
+                dir('live/prod/services') {
                     script {
                             echo "Terraform action: ${action}"
                             sh "terraform ${action} -auto-approve"
