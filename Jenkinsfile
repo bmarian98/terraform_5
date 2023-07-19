@@ -1,4 +1,4 @@
-def gitRepoUrl = 'https://github.com/bmarian98/terraform_5/tree/main'
+def gitRepoUrl = 'https://github.com/bmarian98/terraform_5.git'
 pipeline {
     agent {
         docker {
