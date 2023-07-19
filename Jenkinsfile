@@ -46,21 +46,27 @@ pipeline {
         stage('Network') {
             steps {
                 dir('live/dev/network') {
-                    docker.image('hashicorp/terraform:latest').inside{
-                        sh 'terraform init'
+                    script{
+                        docker.image('hashicorp/terraform:latest').inside{
+                            sh 'terraform init'
+                        }
                     }
                 }
 
                 dir('live/dev/network') {
-                    docker.image('hashicorp/terraform:latest').inside{
-                        sh 'terraform plan'
+                    script{
+                        docker.image('hashicorp/terraform:latest').inside{
+                            sh 'terraform plan'
+                        }
                     }
                 }
 
                 dir('live/dev/network') {
-                    docker.image('hashicorp/terraform:latest').inside{
-                        echo "Terraform action: ${action}"
-                        sh "terraform ${action} -auto-approve"
+                    script{
+                        docker.image('hashicorp/terraform:latest').inside{
+                            echo "Terraform action: ${action}"
+                            sh "terraform ${action} -auto-approve"
+                        }
                     }
                 }
             }
@@ -68,21 +74,27 @@ pipeline {
         stage('Services') {
             steps {
                 dir('live/dev/services') {
-                    docker.image('hashicorp/terraform:latest').inside{
-                        sh 'terraform init'
+                    script{
+                        docker.image('hashicorp/terraform:latest').inside{
+                            sh 'terraform init'
+                        }
                     }
                 }
 
                 dir('live/dev/services') {
-                    docker.image('hashicorp/terraform:latest').inside{
-                        sh 'terraform plan'
+                    script{
+                        docker.image('hashicorp/terraform:latest').inside{
+                            sh 'terraform plan'
+                        }
                     }
                 }
 
                 dir('live/dev/services') {
-                    docker.image('hashicorp/terraform:latest').inside{
-                        echo "Terraform action: ${action}"
-                        sh "terraform ${action} -auto-approve"
+                    scrippt{
+                        docker.image('hashicorp/terraform:latest').inside{
+                            echo "Terraform action: ${action}"
+                            sh "terraform ${action} -auto-approve"
+                        }
                     }
                 }
             }
