@@ -17,6 +17,6 @@ terraform {
 
 # Configure the AWS Provider
 provider "aws" {
-  shared_config_files      = ["/Users/marianbodnar/.aws/config"]
-  shared_credentials_files = ["/Users/marianbodnar/.aws/credentials"]
+  /* shared_config_files      = ["/Users/marianbodnar/.aws/config"]
+  shared_credentials_files = ["/Users/marianbodnar/.aws/credentials"] */
 }

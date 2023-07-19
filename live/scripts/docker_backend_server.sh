@@ -2,7 +2,10 @@
 
 sudo apt update &&
 
-sudo apt install nginx -y &&
+sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common &&
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg &&
+sudo apt update &&
 
 sudo apt install docker -y &&
 
