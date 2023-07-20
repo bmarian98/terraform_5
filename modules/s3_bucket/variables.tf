@@ -18,3 +18,8 @@ variable "zip_name" {
   #default = "webapp.zip"
   type = string
 }
+
+# Define a variable to store the local path of the zip file
+variable "local_zip_file_path" {
+  type = string
+}

@@ -24,4 +24,4 @@ crash.log
 .terraform.lock.hcl
 
 .env
-
+.zip

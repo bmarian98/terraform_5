@@ -1,5 +1,5 @@
 #!/bin/bash
-
+sleep 30  # Add a delay of 30 seconds
 sudo apt update &&
 
 sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common &&

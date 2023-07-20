@@ -12,10 +12,11 @@ variable "s3_app" {}
 data "template_file" "private_ec2_user_data" {
   template = file("../../scripts/docker_backend_server.sh")
   vars = {
-    db_user = var.db_user
-    db_pass = var.db_pass
-    db_url  = var.db_url
-    s3_app  = var.s3_app
+    db_user  = var.db_user
+    db_pass  = var.db_pass
+    db_url   = var.db_url
+    s3_app   = var.s3_app
+    zip_name = "web_app"
   }
 }
 
@@ -72,11 +73,12 @@ module "alb" {
   alb_security_groups     = [module.vpc.public_security_group]
 }
 
-/* module "s3" {
-  source        = "../../../modules/s3_bucket"
-  environment   = "DEV"
-  s3_name       = "mb-s3-webapp-bucket"
-  s3_bucket_tag = "mb-s3"
-  git_repo_url = "https://github.com/RevianLabs/devops-webapp-sample/archive/refs/heads/master.zip"
-  zip_name =  "web_app"
-} */
+module "s3" {
+  source              = "../../../modules/s3_bucket"
+  environment         = "DEV"
+  s3_name             = "mb-s3-webapp-bucket"
+  s3_bucket_tag       = "mb-s3"
+  git_repo_url        = "https://github.com/RevianLabs/devops-webapp-sample/archive/refs/heads/master.zip"
+  zip_name            = "web_app"
+  local_zip_file_path = "${path.root}"
+}
