@@ -75,7 +75,8 @@ module "alb" {
 /* module "s3" {
   source        = "../../../modules/s3_bucket"
   environment   = "DEV"
-  s3_name       = "mb-s3-bucket"
+  s3_name       = "mb-s3-webapp-bucket"
   s3_bucket_tag = "mb-s3"
-
+  git_repo_url = "https://github.com/RevianLabs/devops-webapp-sample/archive/refs/heads/master.zip"
+  zip_name =  "web_app"
 } */
