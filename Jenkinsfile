@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'marian14/alpine-terraform:1.1'            
+            image 'marian14/alpine-terraform:1.2'            
         }
     }
     environment {
@@ -40,28 +40,28 @@ pipeline {
         //     }
         // }
 
-        stage('Network') {
-            steps {
-                dir('live/dev/network') {
-                    script {
-                            sh 'terraform init'
-                    }
-                }
+        // stage('Network') {
+        //     steps {
+        //         dir('live/dev/network') {
+        //             script {
+        //                     sh 'terraform init'
+        //             }
+        //         }
 
-                dir('live/dev/network') {
-                    script {
-                            sh 'terraform plan'
-                    }
-                }
+        //         dir('live/dev/network') {
+        //             script {
+        //                     sh 'terraform plan'
+        //             }
+        //         }
 
-                dir('live/dev/network') {
-                    script {
-                            echo "Terraform action: ${action}"
-                            sh "terraform ${action} -auto-approve"
-                    }
-                }
-            }
-        }
+        //         dir('live/dev/network') {
+        //             script {
+        //                     echo "Terraform action: ${action}"
+        //                     sh "terraform ${action} -auto-approve"
+        //             }
+        //         }
+        //     }
+        // }
         
         stage('Services') {
             steps {
