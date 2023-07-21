@@ -1,4 +1,4 @@
-
+/* 
 data "aws_iam_instance_profile" "instance_profile" {
   name = "MBSSMEC2InstanceProfile"
 }
@@ -71,7 +71,7 @@ module "alb" {
   module.vpc.private_subnets[1].id]
   alb_tg_ec2_instance_ids = module.public_ec2.ec2_instace_ids
   alb_security_groups     = [module.vpc.public_security_group]
-}
+} */
 
 /* module "s3" {
   source        = "../../../modules/s3_bucket"
@@ -82,11 +82,11 @@ module "alb" {
 }  */
 
 
-/* module "s3" {
+module "s3_static_website" {
   source        = "../../../modules/s3_static_website"
   environment   = "PROD"
-  s3_name       = "mb-s3-bucket-98"
+  s3_name       = "student-mb-s3-bucket-98"
   s3_bucket_tag = "mb-s3-98"
-    index_file_path = file("../../static_website/index.html")
-    error_file_path = file("../../static_website/error.html")
-} */
+  index_file_path = file("../../static_website/index.html")
+  error_file_path = file("../../static_website/error.html")
+}

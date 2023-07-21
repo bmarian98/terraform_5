@@ -1,5 +1,10 @@
 #!/bin/bash
-sleep 30  # Add a delay of 30 seconds
+sleep 20  # Add a delay of 30 seconds
+
+while fuser /var/lib/dpkg/lock >/dev/null 2>&1 ; do
+    echo "Waiting for other package manager to finish..."
+    sleep 1
+done
 
 sudo apt update -y &&
 
